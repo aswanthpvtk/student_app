@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-add-student',
@@ -10,41 +11,41 @@ export class AddStudentComponent {
 
   name=""
 admno=""
-rno=""
-cname=""
+rollno=""
+college=""
 
 
-  // constructor(private api:ApiService){}
+  constructor(private api:ApiService){}
 
   readValues=()=>
   {
-    let data:any={"name":this.name,"admno":this.admno,"rno":this.rno,"cname":this.cname}
+    let data:any={"name":this.name,"admno":this.admno,"rollno":this.rollno,"college":this.college}
     console.log(data)
-    // this.api.addEmp(data).subscribe(
-    //   (response:any)=>
-    //   {
-    //     console.log(response)
-    //     if (response.status == "success") {
+    this.api.addStd(data).subscribe(
+      (response:any)=>
+      {
+        console.log(response)
+        if (response.status == "success") {
 
-    //       alert("Successfully added")
+          alert("Successfully added")
   
-    //       this.name=""
+          this.name=""
   
-    //       this.admno=""
+          this.admno=""
 
-    //       this.rno=""
+          this.rollno=""
   
-    //       this.cname=""
+          this.college=""
   
           
   
-    //     } else {
+        } else {
   
-    //       alert("Something went wrong")
+          alert("Something went wrong")
   
-    //     }
-    //   }
-    // )
+        }
+      }
+    )
   }
 
 }
